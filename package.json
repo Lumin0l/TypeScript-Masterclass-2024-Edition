@@ -1,0 +1,22 @@
+{
+  "name": "typescript-masterclass-2024-edition",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lumin0l/TypeScript-Masterclass-2024-Edition.git"
+  },
+  "author": "Imanol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lumin0l/TypeScript-Masterclass-2024-Edition/issues"
+  },
+  "homepage": "https://github.com/Lumin0l/TypeScript-Masterclass-2024-Edition#readme",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}
