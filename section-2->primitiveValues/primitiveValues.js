@@ -10,3 +10,6 @@ var age = 2;
 const members = 50; // inferred number
 members = 120; // Error, because members is a const and cant be reassigned.
 let stringToNumber = parseInt("1999"); // Expression concludes in number, so type number
+/* Booleans */
+// Work the same
+let minimumStudents = students >= 25 ? true : false; // This infers the let to be a boolean.
