@@ -8,9 +8,12 @@ let studentsAsString = students.toString(); // Even though "students" is a numbe
 
 /* Numbers */
 var age: number = 2;
+
 const members = 50; // inferred number
+// @ts-ignore
 members = 120; // Error, because members is a const and cant be reassigned.
 
+// @ts-ignore
 let stringToNumber = parseInt("1999"); // Expression concludes in number, so type number
 
 /* Booleans */
