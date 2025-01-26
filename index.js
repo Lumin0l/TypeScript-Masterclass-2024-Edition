@@ -1,8 +1,13 @@
 "use strict";
-// A funtion declaration that never completes and returns a never type
-const throwError = (errorMsg) => {
-    throw new Error(errorMsg);
+// Types can be casted other types.
+// This shoudl be done when you are sure that TypeScript is not able to infer the types correctly
+let firstName = "Mark";
+let lastName = "Doe";
+let user = {
+    name: "Mark",
+    email: "mark@email.com",
 };
-// If we use the parent type for an annotation, like object to annotate an array, TS won't complain because object is the parent
-let strings = ["a", "b"];
-let myFunc = () => 2;
+function fetchUser() {
+    return user; // or "return <User> user"
+}
+const fetchedData = fetchUser();

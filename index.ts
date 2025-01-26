@@ -1,17 +1,20 @@
-// A subtype will always exten the parent type
-type check = any extends unknown ? true : false;
-type check2 = string extends any ? true : false;
-type check3 = number extends any ? true : false;
-type check4 = {} extends Object ? true : false;
-type check5 = [] extends Object ? true : false;
-type check6 = Function extends Object ? true : false;
-type check7 = never extends any ? true : false;
+// Types can be casted other types.
+// This shoudl be done when you are sure that TypeScript is not able to infer the types correctly
+let firstName = <any>"Mark";
+let lastName = "Doe" as any;
 
-// A funtion declaration that never completes and returns a never type
-const throwError = (errorMsg: string) => {
-  throw new Error(errorMsg);
+let user = {
+  name: "Mark",
+  email: "mark@email.com",
 };
 
-// If we use the parent type for an annotation, like object to annotate an array, TS won't complain because object is the parent
-let strings: Object = ["a", "b"];
-let myFunc: Function = () => 2;
+type User = {
+  name: string;
+  email: string;
+};
+
+function fetchUser() {
+  return user as User; // or "return <User> user"
+}
+
+const fetchedData = fetchUser();
