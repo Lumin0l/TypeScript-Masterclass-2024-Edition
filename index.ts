@@ -1,24 +1,35 @@
-let city = "New York"; // string
-let population = 8400000; // number
-const age = 32; //! number -> it is literal 32 because it's a const and thus fixed.
-let oldAge = 79 as const; //! const -> yes and no it's literal 79
-let newAge = oldAge; // const number 79
-let data = new Map(); // Map
-let score = [90, 86, 100]; //! array<any> -> number[]
-type Primitive = string | number | boolean; // string or number or boolean, since it's a union type
-type CustomName = "John" extends string ? string : "John"; // string
-type CustomAge = typeof newAge extends number ? 79 : number; // 79
-type CheckData = typeof data extends Object ? true : false; // true
-type CheckScore = typeof score extends never ? {} : []; // []
+let person = {
+    name: "Mark",
+    age: 32,
+};
 
-/**
- * Are the following statements valid
- * Check if below lines of code are valid as per TypeScript or not without uncommenting them
- *  */
+// Car is any object without a shape or defined properties
+let car: Object = {
+    brand: "BMW",
+    color: "black",
+};
 
-// age = 85; -> yes !-> it is a const, can't be reassigned.
-// score.push(10); -> yes
-// score.push("New Score"); -> yes !-> error, because it is a number array. 
-// let customAge: CustomAge = 50; -> yes !-> no, because it is a const literal of 79
-// let primitive: Primitive = new Date(); -> yes !-> no, because it's cast as string 
-// let years: CheckScore = []; -> yes
+// The problem using teh Object type, its a super type and Arrays are also objects
+let score: Object = [];
+
+// If you see just because car is a Object I can re-assign it as an array
+// ! This is a problem
+car = [21, 32, 48];
+
+// Defining an object with the litral syntax
+let newCar: {} = {
+    brand: "BMW",
+    color: "black",
+};
+
+// The problem with usign the litral object {} is that now properties are not defined and can vary
+// This can lead to errors in the application
+newCar = {
+    brand: "BMW",
+};
+
+// In order to avoid it, we can literally define the object with the properties
+let myCar: { brand: string; color: string } = {
+    brand: "BMW",
+    color: "black",
+};
