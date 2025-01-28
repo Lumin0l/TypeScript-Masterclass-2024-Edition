@@ -1,25 +1,27 @@
+// Declare a Caterer type
 type Caterer = {
-    name: string,
-    address: string,
-    phone: number,
-}
+    name: string;
+    address: string;
+    phone: number;
+};
 
+// Declare a Seats type
 type Seats = {
-    A1: string,
-    A2: string,
-    A3: string,
-}
+    [keyof: string]: string; // He uses Index signature, done to assign multiple iterations of the same style of value.
+};
 
+// Declare a Airplane Type
 type Airplane = {
-    model: string,
-    flightNumber: string,
-    timeOfDeparture: Date,
-    timeOfArrival: Date,
-    caterer: Caterer,
-    seats: Seats
-}
+    model: string;
+    flightNumber: string;
+    timeOfDeparture: Date;
+    timeOfArrival: Date;
+    caterer: Caterer;
+    seats: Seats;
+};
 
-let airplane = {
+// Assign Airplane Type to Object
+let airplane: Airplane = {
     model: "Airbus A380",
     flightNumber: "A2201",
     timeOfDeparture: new Date(),
@@ -34,4 +36,4 @@ let airplane = {
         A2: "Mark Doe",
         A3: "Sam Doe",
     },
-};
+}
