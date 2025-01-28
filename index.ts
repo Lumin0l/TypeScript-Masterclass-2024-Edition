@@ -1,20 +1,37 @@
-type Cat = {
-    name: string;
-    purrs: boolean;
-    color: string;
-  };
-  
-  type Dog = {
-    name: string;
-    barks: boolean;
-    color: string;
-  };
-  
-  type HybridAnimal = Dog & Cat;
-  
-  const hybridAnimal: HybridAnimal = { // Must have all properties of both Cat and Dog
-    name: "Max",
-    color: "White",
-    barks: true,
-    purrs: false,
-  };
+type Caterer = {
+    name: string,
+    address: string,
+    phone: number,
+}
+
+type Seats = {
+    A1: string,
+    A2: string,
+    A3: string,
+}
+
+type Airplane = {
+    model: string,
+    flightNumber: string,
+    timeOfDeparture: Date,
+    timeOfArrival: Date,
+    caterer: Caterer,
+    seats: Seats
+}
+
+let airplane = {
+    model: "Airbus A380",
+    flightNumber: "A2201",
+    timeOfDeparture: new Date(),
+    timeOfArrival: new Date(),
+    caterer: {
+        name: "Special Food Ltd",
+        address: "484, Some Street, New York",
+        phone: 7867856751,
+    },
+    seats: {
+        A1: "John Doe",
+        A2: "Mark Doe",
+        A3: "Sam Doe",
+    },
+};
