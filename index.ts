@@ -1,90 +1,43 @@
-// One of having nested objects
-// type Post = {
-//   title: string; // Type Annotations using semi-colons instead of commas
-//   content: string;
-//   date: Date;
-//   author: {
-//     name: string;
-//     age: number;
-//     email: string;
-//   };
-// };
-
-// Better to declare a separate type for Author
-type Author = {
+// Declare a type for the Dog
+type Dog = {
     name: string;
-    age: number;
-    email: string;
-    readonly type: "human" | "ai"; // Read only properties are those properties which, once declared and assigned a value, cannot be changed
+    barks: boolean;
+    wags: boolean;
   };
   
-  // Declare a new type for Awards
-  // Initial declaration
-  // type Awards = {
-  //   [keyof: string]: {
-  //     name: string;
-  //     date: Date;
-  //   };
-  // };
-  
-  type AwardDetails = {
+  // Declare a type for the Cat
+  type Cat = {
     name: string;
-    date: Date;
+    purrs: boolean;
   };
   
-  type Awards = {
-    [keyof: string]: AwardDetails;
+  // Create a new type which is a union of Dog and Cat
+  type DogAndCatUnion = Dog | Cat;
+  
+  // All Dog properties
+  let dog: DogAndCatUnion = {
+    name: "Buddy",
+    barks: true,
+    wags: true,
   };
   
-  type Post = {
-    title: string;
-    content: string;
-    date: Date;
-    author: Author;
-    awards: Awards;
-    category?: string; // Optional property
+  // All Cat properties
+  let cat: DogAndCatUnion = {
+    name: "Bella",
+    purrs: true,
   };
   
-  let post: Post = {
-    title: "This is a blog post",
-    content: "Content of the post",
-    date: new Date(),
-    category: "javascript",
-    author: {
-      name: "John",
-      age: 32,
-      email: "john@doe.com",
-      type: "human",
-    },
-    awards: {
-      web: {
-        name: "Wed Awards",
-        date: new Date(),
-      },
-      web3: {
-        name: "Web 3",
-        date: new Date(),
-      },
-    },
+  // All Dog and partial cat properties
+  let dogAndCat: DogAndCatUnion = {
+    name: "Hybrid",
+    barks: true,
+    wags: true,
+    purrs: true,
   };
   
-  let post2: Post = {
-    title: "This is a blog post",
-    content: "Content of the post",
-    date: new Date(),
-    author: {
-      name: "John",
-      age: 32,
-      email: "john@doe.com",
-      type: "human",
-    },
-    awards: {
-      web: {
-        name: "Wed Awards",
-        date: new Date(),
-      },
-    },
+  // Cannot contain partial Properties of one of the types
+  // @ts-ignore
+  let partialDog: DogAndCatUnion = {
+    name: "Hybrid",
+    barks: true,
   };
-  
-  // Readonly properties once created cannot be re-assigned
-  post2.author.type = "ai";
