@@ -1,59 +1,27 @@
+/* Const Enums are not compiled into JS, but their value is */
+// We can leverage that for performance reasons, but in general it's just better to use normal enums.
 
-// Enums are an exception of runtime because they are compiled to vanilla JS as functions that hold the literals.
 
-//  Why Are enums needed?
-// We ofetn declare constants in JavaScript for eg.
-const STATUS_LOADING = "loading";
-const STATUS_STOPPED = "stopped";
-
-// The intension of declaring these constants is that we do not want the value to change
-// because these cannot be reassiged to developers bny mistake cannot do this
-// JavaScript will not throw an error but will not reassign the constant it will always remain loading
-STATUS_LOADING = "stopped";
-
-// Auto incrementing values given to enums
-// Single enum can contain all values
-enum Direction {
-  Up,
-  Down,
-  Left,
-  Right,
-}
-
-// Assigning the first number and the rest would auto increment
-enum Direction2 {
-  Up = 1,
-  Down,
-  Left,
-  Right,
-}
-
-// String Enums
-export enum Roles {
-  admin = "admin",
-  author = "author",
-  editor = "editor",
-}
-
-// Use case for enums
-type Person = {
-  name: string;
-  email: string;
-  password: string;
-  role: Roles;
-};
-
-const person: Person = {
-  name: "John",
-  email: "john@email.com",
-  password: "password",
-  role: Roles.admin,
-};
-
-// Enums can be hetrogeneous as well
-// Assigning the first number and the rest would auto increment
-enum Direction3 {
-  Up = 1,
-  Down = "Down",
-  Left = "Left",
-}
+// Redeclaring the same  using Enum
+// const Enum, is not compiled in JavaScript as an Object but only the value is used
+const enum EDirection {
+    Up,
+    Down,
+    Left,
+    Right,
+  }
+  // Show the use of value
+  let eDirection = EDirection.Up;
+  
+  // Declaring an object with same values as a constant
+  // Typescript sets each property as readonly
+  const ODirection = {
+    Up: 0,
+    Down: 1,
+    Left: 2,
+    Right: 3,
+  } as const;
+  
+  // Now this acts as an enum because you cannot change the value of properties
+  console.log("Object as const", ODirection.Up);
+  ODirection.Up = "newValue";
