@@ -1,7 +1,5 @@
-/* What are enums */
-// They are a way to specify descriptive constants and associate them with a numeric value
 
-
+// Enums are an exception of runtime because they are compiled to vanilla JS as functions that hold the literals.
 
 //  Why Are enums needed?
 // We ofetn declare constants in JavaScript for eg.
