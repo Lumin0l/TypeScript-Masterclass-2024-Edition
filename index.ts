@@ -1,33 +1,61 @@
-/* Readonly */
-// It means we cannot modify, change or add anything to the lists declared as readonly
-// Summary, 3 ways of decaring it: 
-// let item: radonly number[] = etc...
-// type item = Readonly<number[]>
-// type item = ReadonlyArray<number>
+/* What are enums */
+// They are a way to specify descriptive constants and associate them with a numeric value
 
 
-// An array can be converted into readonly using the readopnly keyword
-let number: readonly number[] = [1, 2, 3];
 
-// Once an array is readonly no values can be added or removed from an array
-number.push(1);
+//  Why Are enums needed?
+// We ofetn declare constants in JavaScript for eg.
+const STATUS_LOADING = "loading";
+const STATUS_STOPPED = "stopped";
 
-// A tuple can be read only also
-type ReadOnlyTuple = readonly [string, string, number];
+// The intension of declaring these constants is that we do not want the value to change
+// because these cannot be reassiged to developers bny mistake cannot do this
+// JavaScript will not throw an error but will not reassign the constant it will always remain loading
+STATUS_LOADING = "stopped";
 
-// For our example let's create a new Tuple which is readonly
-type ReadOnlyPerson = readonly [string, string, number];
+// Auto incrementing values given to enums
+// Single enum can contain all values
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
 
-// Creating a new readonly person
-const person: ReadOnlyPerson = ["John", "Smith", 32];
+// Assigning the first number and the rest would auto increment
+enum Direction2 {
+  Up = 1,
+  Down,
+  Left,
+  Right,
+}
 
-//  There are some alternavites for creating Readonly Arrays
-type a = Readonly<string[]>;
-type b = ReadonlyArray<string>;
+// String Enums
+export enum Roles {
+  admin = "admin",
+  author = "author",
+  editor = "editor",
+}
 
-// They can olso be type unions
-type c = Readonly<(string | number)[]>
-type d = ReadonlyArray<string | number>
+// Use case for enums
+type Person = {
+  name: string;
+  email: string;
+  password: string;
+  role: Roles;
+};
 
-//  Alternative syntax for Readonly Tuple
-type f = Readonly<[string, string, number]>;
+const person: Person = {
+  name: "John",
+  email: "john@email.com",
+  password: "password",
+  role: Roles.admin,
+};
+
+// Enums can be hetrogeneous as well
+// Assigning the first number and the rest would auto increment
+enum Direction3 {
+  Up = 1,
+  Down = "Down",
+  Left = "Left",
+}
