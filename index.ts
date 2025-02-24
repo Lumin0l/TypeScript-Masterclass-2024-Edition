@@ -1,24 +1,33 @@
-43. Tuples
-// What if the person arraty needs to have a fixed set of values
-// We create a Tuple for such a situation
-let person: [string, string, number];
-person = ["John", "Doe", 18];
+/* Readonly */
+// It means we cannot modify, change or add anything to the lists declared as readonly
+// Summary, 3 ways of decaring it: 
+// let item: radonly number[] = etc...
+// type item = Readonly<number[]>
+// type item = ReadonlyArray<number>
 
-// A user array can have optional properties as well
-let user: [string, string, number, string?];
-user = ["Mark", "Doe", 21, "mark@doe.com"];
 
-// Tuple with multiple string value which do not exist at the time of declaration
-type listOfStudents = [number, boolean, ...string[]];
+// An array can be converted into readonly using the readopnly keyword
+let number: readonly number[] = [1, 2, 3];
 
-const passingStudents: listOfStudents = [3, true, "John", "Stella", "Mark"];
+// Once an array is readonly no values can be added or removed from an array
+number.push(1);
 
-const failingStudents: listOfStudents = [1, false, "Scott"];
+// A tuple can be read only also
+type ReadOnlyTuple = readonly [string, string, number];
 
-// Tuples with any number of value in the beginning or end
-// Type Alias can be used with Tuples as well
-type StringBooleansNumber = [string, ...boolean[], number];
-type BooleansStringNumber = [...boolean[], string, number];
+// For our example let's create a new Tuple which is readonly
+type ReadOnlyPerson = readonly [string, string, number];
 
-let stringBooleanNumber: StringBooleansNumber = ["string", true, false, 32];
-let booleanStringNumber: BooleansStringNumber = [true, false, "string", 32];
+// Creating a new readonly person
+const person: ReadOnlyPerson = ["John", "Smith", 32];
+
+//  There are some alternavites for creating Readonly Arrays
+type a = Readonly<string[]>;
+type b = ReadonlyArray<string>;
+
+// They can olso be type unions
+type c = Readonly<(string | number)[]>
+type d = ReadonlyArray<string | number>
+
+//  Alternative syntax for Readonly Tuple
+type f = Readonly<[string, string, number]>;
