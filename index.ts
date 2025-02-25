@@ -1,38 +1,38 @@
-/* Enums as Unions and Types */
 
-// We have an enume for shapes
-enum ShapeKind {
-  Circle = "circle",
-  Square = "sqaure",
+/* My solution */
+
+// Practice Questions
+//* 1. Create an array numbers that only accepts numbers and another array strings that only accepts strings.
+
+let numbers: number[] = []
+let strings: string[] = []
+
+
+//* 2. Create a tuple person that holds a string (name) and a number (age).
+
+const namee: string = "Imanol"
+const age: number = 29
+
+let person: [string, number] = [namee, age]
+
+//* 3. Create a readonly array colors that holds strings and a readonly tuple point that holds two numbers (x, y). Attempt to modify their elements and observe the TypeScript error.
+
+let colors: readonly string[] = ["white", "red"]
+let point: readonly [number, number] = [1, 2]
+
+// colors.push("blue")
+
+//* 4. Create an enum called StatusEnum that should 3 properties Active, Inactive, Pending
+
+enum StatusEnum {
+  Active = "active",
+  Inactive = "inactive",
+  Pending = "pending"  
 }
 
-// A circle type would have additional properties
-type Circle = {
-  kind: ShapeKind.Circle; // here you're basically applying the type to kind.
-  radius: number;
-};
-
-// A sqaure type would have additional properties
-type Square = {
-  kind: ShapeKind.Square;
-  sideLength: number;
-};
-
-// Now enuma act as types as TS is able to identify that square enum cannot be assigned to circle type
-let circle: Circle = {
-  kind: ShapeKind.Square,
-  radius: 100,
-};
-
-//  Enums automatically become union of each of its members
-// Here the ShapeKind Enum is acting as a union of ""
-function printShape(shape: ShapeKind /* same as "Circle"| "Square"  */) {
-  // We can check teh shape in step one
-  console.log(`Shape is: ${shape}`);
-  // Also an or comparison TS will say that this is already an enum so this comparison is not needed
-  if (ShapeKind.Circle || ShapeKind.Square) {
-  }
-}
-
-// We can invoke the function
-printShape(ShapeKind.Circle);
+//* 5. Create an object as const called Status with the same structure as an StatusEnum
+const Status = {
+  Active: "active",
+  Inactive: "inactive",
+  Pending: "pending" 
+} as const;
