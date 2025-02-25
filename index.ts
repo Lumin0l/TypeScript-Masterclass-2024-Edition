@@ -1,85 +1,38 @@
-// Auto incrementing values given to enums
-enum Direction {
-  Up,
-  Down,
-  Left,
-  Right,
+/* Enums as Unions and Types */
+
+// We have an enume for shapes
+enum ShapeKind {
+  Circle = "circle",
+  Square = "sqaure",
 }
 
-// Assigning the first number and the rest would auto increment
-enum Direction2 {
-  Up = 1,
-  Down,
-  Left,
-  Right,
-}
-
-// String Enums
-export enum Roles {
-  admin = "admin",
-  author = "author",
-  editor = "editor",
-}
-
-// Use case for enums
-type Person = {
-  name: string;
-  email: string;
-  password: string;
-  role: Roles;
+// A circle type would have additional properties
+type Circle = {
+  kind: ShapeKind.Circle; // here you're basically applying the type to kind.
+  radius: number;
 };
 
-const person: Person = {
-  name: "John",
-  email: "john@email.com",
-  password: "password",
-  role: Roles.admin,
+// A sqaure type would have additional properties
+type Square = {
+  kind: ShapeKind.Square;
+  sideLength: number;
 };
 
-// Enums can be hetrogeneous as well
-// Assigning the first number and the rest would auto increment
-enum Direction3 {
-  Up = 1,
-  Down = "Down",
-  Left = "Left",
+// Now enuma act as types as TS is able to identify that square enum cannot be assigned to circle type
+let circle: Circle = {
+  kind: ShapeKind.Square,
+  radius: 100,
+};
+
+//  Enums automatically become union of each of its members
+// Here the ShapeKind Enum is acting as a union of ""
+function printShape(shape: ShapeKind /* same as "Circle"| "Square"  */) {
+  // We can check teh shape in step one
+  console.log(`Shape is: ${shape}`);
+  // Also an or comparison TS will say that this is already an enum so this comparison is not needed
+  if (ShapeKind.Circle || ShapeKind.Square) {
+  }
 }
 
-// Enums are available in JavaScript as Objects
-console.log(Roles);
-
-// Redeclaring the same  using Enum
-// const Enum, is not compiled in JavaScript as an Object but only the value is used
-const enum EDirection {
-  Up,
-  Down,
-  Left,
-  Right,
-}
-// Show the use of value
-let eDirection = EDirection.Up;
-
-// Declaring an object with same values as a constant
-// Typescript sets each property as readonly
-const ODirection = {
-  Up: 0,
-  Down: 1,
-  Left: 2,
-  Right: 3,
-} as const;
-
-// Now this acts as an enum because you cannot change the value of properties
-console.log("Object as const", ODirection.Up);
-ODirection.Up = "newValue";
-
-// Enums can contain computed values as well
-enum AccessPermission {
-  None = 0,
-  Read = 1,
-  Write = 2,
-  ReadWrite = Read + Write, // 3, it's the combination of both of those
-  Delete = 4,
-  All = ReadWrite | Delete, // 7, | also acts a linker symbol
-}
-
-console.log(AccessPermission.ReadWrite);
-console.log(AccessPermission.All);
+// We can invoke the function
+printShape(ShapeKind.Circle);
