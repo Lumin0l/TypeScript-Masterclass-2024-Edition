@@ -9,6 +9,6 @@ const intro2 = function (name: string, age: number): string {
 };
 
 // Using the arrow function syntax
-const intro3 = (name: string, age: number): string => {
+const intro3 = (name: string, age: number): string => { // This last "string" is the final mandatory type of the return value
   return `My name is ${name} and I am ${age} years old`;
 };
