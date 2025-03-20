@@ -1,16 +1,37 @@
-// Defining a named function in TypeScript
-// Functions often need optional params
-// We can add optional params by using ? just like we do with objects, PAUSE AND PRACTICE
-function intro(name: string, age: number, country?: string): string {
-  if (country) {
-    return `My name is ${name} and I am ${age} years old, I live in ${country}`;
-  }
-  return `My name is ${name} and I am ${age} years old`;
+enum AgeUnit {
+  Years = "years",
+  Months = "months",
 }
 
-// TypeScript will throw an error if all defualt params are not added as arguments
-// The error displays while you are programming and not at runtime
-//! intro("John");
-intro("John", 32);
+// Greeting can be defined as a type as well
+type GreetingFunction = (greeting: string /* can have additional params */) => string;
 
-console.log("Mike French", 20, "France")
+type Person = {
+  name: string;
+  age: number;
+  ageUnit: AgeUnit;
+  country: string;
+  // greet: Function;
+  greet: GreetingFunction;
+};
+
+let person: Person = {
+  name: "Scott",
+  age: 30,
+  ageUnit: AgeUnit.Years,
+  country: "USA",
+  greet: (greeting) => {
+    return `${greeting} ${person.name}`;
+  },
+};
+
+function convertAgeToMonths(person: Person): Person {
+  if (person.ageUnit === AgeUnit.Years) {
+    person.age = person.age * 12;
+    person.ageUnit = AgeUnit.Months;
+  }
+  return person;
+}
+
+console.log(convertAgeToMonths(person));
+console.log(person.greet("Hello"));
